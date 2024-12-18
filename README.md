@@ -5,7 +5,7 @@ The application has been divided into different services in order to support mic
 
 Programming Language: Java 21
 
-Frameworks: Spring Boot, Spring MVC, Spring Data JPA
+Frameworks: Spring Boot, Spring Data JPA, Spring MVC
 
 Database: MySQL, Redis
 
