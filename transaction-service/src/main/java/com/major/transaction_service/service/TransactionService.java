@@ -15,6 +15,8 @@ import org.json.simple.JSONObject;
 
 import java.util.UUID;
 
+import static com.major.transaction_service.utils.Constants.TRANSACTION_COMPLETED;
+
 @Service
 public class TransactionService {
 
@@ -68,7 +70,7 @@ public class TransactionService {
         jsonObject.put("senderEmail", senderEmail);
         jsonObject.put("receiverEmail", receiverEmail);
 
-        this.kafkaTemplate.send("transaction_completed", objectMapper.writeValueAsString(jsonObject));
+        this.kafkaTemplate.send(TRANSACTION_COMPLETED, objectMapper.writeValueAsString(jsonObject));
         return transaction.getExternalTransactionId();
     }
 }

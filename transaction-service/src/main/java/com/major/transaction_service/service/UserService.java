@@ -17,11 +17,6 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //user microservice to fetch the UserDetails
-
-        //for inter service communication
-        //1 -> RestTemplate
-        //2 -> Feign Client
 
         //make sure the authority is svc
         String transactionUser = "txn-service";
