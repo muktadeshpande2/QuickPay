@@ -9,6 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.json.simple.parser.ParseException;
 
+import static com.major.notification_service.utils.Constants.TRANSACTION_COMPLETED;
+
 @Service
 public class NotificationService {
 
@@ -18,7 +20,7 @@ public class NotificationService {
     @Autowired
     JavaMailSender javaMailSender;
 
-    @KafkaListener(topics = {"transaction_completed"}, groupId = "qp2")
+    @KafkaListener(topics = {TRANSACTION_COMPLETED}, groupId = "qp2")
     public void notify(String msg) throws ParseException {
         JSONObject jsonObject = (JSONObject) new JSONParser().parse(msg);
         String transactionId = (String) jsonObject.get("transactionId");
@@ -34,7 +36,7 @@ public class NotificationService {
         if(!senderMsg.isEmpty()) {
             simpleMailMessage.setTo(senderEmail);
             simpleMailMessage.setSubject("E-Wallet Transaction Update");
-            simpleMailMessage.setFrom("m.desh7903@gmail.com");
+            simpleMailMessage.setFrom("m.desh6541@hotmail.com");
             simpleMailMessage.setText(senderMsg);
             javaMailSender.send(simpleMailMessage);
         }
