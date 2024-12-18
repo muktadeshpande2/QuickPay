@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import static com.major.wallet_service.utils.Constants.USER_CREATED;
+
 @Service
 public class WalletService {
 
@@ -21,7 +23,7 @@ public class WalletService {
      * User onboarding flow
      */
 
-    @KafkaListener(topics = {"user_created"}, groupId = "qp1")
+    @KafkaListener(topics = {USER_CREATED}, groupId = "qp1")
     public void createWallet(String msg) {
         try {
             JSONObject userJsonObject = (org.json.simple.JSONObject) new JSONParser().parse(msg);
