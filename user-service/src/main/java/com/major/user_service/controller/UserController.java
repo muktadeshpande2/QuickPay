@@ -19,7 +19,6 @@ public class UserController {
 
     /**
      * SignUp API
-     * @param createUserRequest
      */
     @PostMapping("/create")
     public void createUser(@RequestBody @Valid CreateUserRequest createUserRequest) {

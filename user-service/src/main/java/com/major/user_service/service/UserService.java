@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static com.major.user_service.utils.Constants.USER_CREATED;
+
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -43,10 +46,9 @@ public class UserService implements UserDetailsService {
         userJSONObject.put("phone", user.getUsername());
         userJSONObject.put("email", user.getEmail());
 
-        //publish an event to kafka with topic -> user_created
-        //TODO -> move to constants
+
         try{
-            kafkaTemplate.send("user_create", objectMapper.writeValueAsString(userJSONObject));
+            kafkaTemplate.send(USER_CREATED, objectMapper.writeValueAsString(userJSONObject));
         } catch(JsonProcessingException e) {
             throw new RuntimeException(e.getMessage());
         }
