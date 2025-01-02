@@ -11,8 +11,6 @@ Database: MySQL, Redis
 
 Event Streaming: Apache Kafka
 
-Testing Frameworks: JUnit, Mockito
-
 API Testing: Postman
 
 Build Tool: Maven
